@@ -9,13 +9,14 @@
       </template>
       <template #end>
         <div class="flex align-items-center gap-2">
+          <Button icon="pi pi-user" severity="secondary" text :tooltip="user.username" />
           <Button
-            icon="pi pi-user"
+            icon="pi pi-sign-out"
             severity="secondary"
             text
-            :tooltip="user.username"
+            @click="handleLogout"
+            tooltip="登出"
           />
-          <Button icon="pi pi-sign-out" severity="secondary" text @click="handleLogout" tooltip="登出" />
         </div>
       </template>
       <template #item="{ item, props }">
@@ -23,7 +24,7 @@
           v-bind="props.action"
           :class="[
             'flex items-center gap-2 px-3 py-2 cursor-pointer',
-            activeMenu === item.label ? 'bg-green-100 text-green-700 font-bold' : ''
+            activeMenu === item.label ? 'bg-green-100 text-green-700 font-bold' : '',
           ]"
         >
           <i :class="item.icon"></i>
@@ -31,7 +32,7 @@
         </div>
       </template>
     </Menubar>
-    
+
     <main class="p-6">
       <Toast />
       <router-view />
@@ -64,7 +65,7 @@ const handleLogout = async () => {
         severity: 'error',
         summary: '登出失敗',
         detail: '請稍後再試',
-        life: 3000
+        life: 3000,
       })
       return
     }
@@ -75,7 +76,7 @@ const handleLogout = async () => {
     severity: 'info',
     summary: '已登出',
     detail: '您已成功登出系統',
-    life: 3000
+    life: 3000,
   })
   router.push('/admin/login')
 }
@@ -89,35 +90,35 @@ const menuItems = computed(() => [
         label: '專案管理',
         icon: 'pi pi-briefcase',
         command: () => router.push('/admin/projects'),
-        route: '/admin/projects'
+        route: '/admin/projects',
       },
       {
         label: '模組管理',
         icon: 'pi pi-box',
         command: () => router.push('/admin/modules'),
-        route: '/admin/modules'
+        route: '/admin/modules',
       },
       {
         label: '部落格文章管理',
         icon: 'pi pi-file',
         command: () => router.push('/admin/blog'),
-        route: '/admin/blog'
+        route: '/admin/blog',
       },
       {
         label: 'FAQ 管理',
         icon: 'pi pi-question-circle',
         command: () => router.push('/admin/faq'),
-        route: '/admin/faq'
-      }
-    ]
+        route: '/admin/faq',
+      },
+    ],
   },
   {
     label: '前台',
     icon: 'pi pi-external-link',
     command: () => {
-      window.open('/', '_blank')
-    }
-  }
+      window.open('./', '_blank')
+    },
+  },
 ])
 
 // 監聽路由變化，自動設定 activeMenu
@@ -125,9 +126,9 @@ watch(
   () => route.path,
   (newPath) => {
     const items = menuItems.value[0].items
-    const found = items.find(item => item.route === newPath)
+    const found = items.find((item) => item.route === newPath)
     activeMenu.value = found ? found.label : ''
   },
-  { immediate: true }
+  { immediate: true },
 )
 </script>
