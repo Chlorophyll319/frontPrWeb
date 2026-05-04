@@ -49,7 +49,7 @@
         </label>
         <ul
           tabindex="0"
-          class="dropdown-content menu menu-sm mt-3 z-[1] p-2 shadow bg-base-100 rounded-xl w-52"
+          class="dropdown-content menu menu-sm mt-3 z-1 p-2 shadow bg-base-100 rounded-xl w-52"
         >
           <template v-for="item in navItems" :key="item.to">
             <li v-if="item.show">

@@ -152,7 +152,7 @@ const setCurrentStep = (step) => {
             </div>
 
             <div
-              class="mt-4 p-4 bg-gradient-to-r from-success/20 to-success/10 rounded-lg border-l-4 border-success"
+              class="mt-4 p-4 bg-linear-to-r from-success/20 to-success/10 rounded-lg border-l-4 border-success"
             >
               <div class="flex items-start space-x-3">
                 <span class="text-2xl">💡</span>
@@ -290,7 +290,7 @@ const setCurrentStep = (step) => {
 
             <!-- 非自願離職者專屬 -->
             <div
-              class="mb-4 p-4 bg-gradient-to-r from-error/20 to-error/10 rounded-lg border-l-4 border-error"
+              class="mb-4 p-4 bg-linear-to-r from-error/20 to-error/10 rounded-lg border-l-4 border-error"
             >
               <div class="flex items-start space-x-3">
                 <span class="text-2xl">🚨</span>
@@ -307,7 +307,7 @@ const setCurrentStep = (step) => {
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-4">
               <!-- 就業服務站報名 -->
               <div
-                class="p-6 border-2 rounded-lg bg-gradient-to-br from-success/10 to-success/5 border-success/30"
+                class="p-6 border-2 rounded-lg bg-linear-to-br from-success/10 to-success/5 border-success/30"
               >
                 <div class="flex items-center space-x-2 mb-3">
                   <span class="text-2xl">🏛️</span>
@@ -332,7 +332,7 @@ const setCurrentStep = (step) => {
 
               <!-- 網路報名 -->
               <div
-                class="p-6 border rounded-lg bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20"
+                class="p-6 border rounded-lg bg-linear-to-br from-primary/5 to-primary/10 border-primary/20"
               >
                 <div class="flex items-center space-x-2 mb-3">
                   <span class="text-2xl">💻</span>
@@ -409,7 +409,7 @@ const setCurrentStep = (step) => {
             </div>
 
             <div
-              class="mt-4 p-4 bg-gradient-to-r from-warning/20 to-warning/10 rounded-lg border-l-4 border-warning"
+              class="mt-4 p-4 bg-linear-to-r from-warning/20 to-warning/10 rounded-lg border-l-4 border-warning"
             >
               <div class="flex items-start space-x-3">
                 <span class="text-2xl">⚠️</span>
@@ -558,7 +558,7 @@ const setCurrentStep = (step) => {
               <div class="space-y-3">
                 <!-- 最重要的加分 -->
                 <div
-                  class="p-4 bg-gradient-to-r from-success/20 to-success/10 rounded-lg border-2 border-success/30"
+                  class="p-4 bg-linear-to-r from-success/20 to-success/10 rounded-lg border-2 border-success/30"
                 >
                   <div class="flex items-center space-x-3 mb-2">
                     <span class="text-2xl">💼</span>
@@ -592,7 +592,7 @@ const setCurrentStep = (step) => {
             </div>
 
             <div
-              class="mt-4 p-4 bg-gradient-to-r from-success/20 to-success/10 rounded-lg border-l-4 border-success"
+              class="mt-4 p-4 bg-linear-to-r from-success/20 to-success/10 rounded-lg border-l-4 border-success"
             >
               <div class="flex items-start space-x-3">
                 <span class="text-2xl">🎉</span>
@@ -635,7 +635,7 @@ const setCurrentStep = (step) => {
             <div class="mt-4 space-y-4">
               <div class="space-y-6">
                 <div
-                  class="flex items-center space-x-4 p-4 bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg"
+                  class="flex items-center space-x-4 p-4 bg-linear-to-r from-primary/5 to-primary/10 rounded-lg"
                 >
                   <div class="text-4xl">📢</div>
                   <div class="flex-1">
@@ -648,7 +648,7 @@ const setCurrentStep = (step) => {
                 </div>
 
                 <div
-                  class="flex items-center space-x-4 p-4 bg-gradient-to-r from-secondary/5 to-secondary/10 rounded-lg"
+                  class="flex items-center space-x-4 p-4 bg-linear-to-r from-secondary/5 to-secondary/10 rounded-lg"
                 >
                   <div class="text-4xl">📧</div>
                   <div class="flex-1">
@@ -661,7 +661,7 @@ const setCurrentStep = (step) => {
                 </div>
 
                 <div
-                  class="flex items-center space-x-4 p-4 bg-gradient-to-r from-accent/5 to-accent/10 rounded-lg"
+                  class="flex items-center space-x-4 p-4 bg-linear-to-r from-accent/5 to-accent/10 rounded-lg"
                 >
                   <div class="text-4xl">🎒</div>
                   <div class="flex-1">
@@ -715,7 +715,7 @@ const setCurrentStep = (step) => {
               </div>
 
               <div
-                class="p-4 bg-gradient-to-r from-info/20 to-info/10 rounded-lg border-l-4 border-info"
+                class="p-4 bg-linear-to-r from-info/20 to-info/10 rounded-lg border-l-4 border-info"
               >
                 <div class="flex items-start space-x-3">
                   <span class="text-2xl">ℹ️</span>
@@ -895,7 +895,7 @@ const setCurrentStep = (step) => {
         </div>
 
         <!-- 權益與補助 -->
-        <div class="card bg-gradient-to-r from-success/10 to-info/10 border-success/20 shadow-lg">
+        <div class="card bg-linear-to-r from-success/10 to-info/10 border-success/20 shadow-lg">
           <div class="card-body">
             <h3 class="card-title text-xl font-bold">
               <svg
@@ -945,7 +945,7 @@ const setCurrentStep = (step) => {
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
                       <div class="space-y-3">
                         <div
-                          class="flex items-start space-x-2 p-3 bg-gradient-to-r from-success/10 to-success/5 rounded"
+                          class="flex items-start space-x-2 p-3 bg-linear-to-r from-success/10 to-success/5 rounded"
                         >
                           <span class="text-lg">💼</span>
                           <div>
@@ -956,7 +956,7 @@ const setCurrentStep = (step) => {
                           </div>
                         </div>
                         <div
-                          class="flex items-start space-x-2 p-3 bg-gradient-to-r from-info/10 to-info/5 rounded"
+                          class="flex items-start space-x-2 p-3 bg-linear-to-r from-info/10 to-info/5 rounded"
                         >
                           <span class="text-lg">👥</span>
                           <div>
@@ -967,7 +967,7 @@ const setCurrentStep = (step) => {
                           </div>
                         </div>
                         <div
-                          class="flex items-start space-x-2 p-3 bg-gradient-to-r from-warning/10 to-warning/5 rounded"
+                          class="flex items-start space-x-2 p-3 bg-linear-to-r from-warning/10 to-warning/5 rounded"
                         >
                           <span class="text-lg">⏰</span>
                           <div>
@@ -978,7 +978,7 @@ const setCurrentStep = (step) => {
                       </div>
                       <div class="space-y-3">
                         <div
-                          class="flex items-start space-x-2 p-3 bg-gradient-to-r from-secondary/10 to-secondary/5 rounded"
+                          class="flex items-start space-x-2 p-3 bg-linear-to-r from-secondary/10 to-secondary/5 rounded"
                         >
                           <span class="text-lg">👩</span>
                           <div>
@@ -989,7 +989,7 @@ const setCurrentStep = (step) => {
                           </div>
                         </div>
                         <div
-                          class="flex items-start space-x-2 p-3 bg-gradient-to-r from-accent/10 to-accent/5 rounded"
+                          class="flex items-start space-x-2 p-3 bg-linear-to-r from-accent/10 to-accent/5 rounded"
                         >
                           <span class="text-lg">🌍</span>
                           <div>
@@ -998,7 +998,7 @@ const setCurrentStep = (step) => {
                           </div>
                         </div>
                         <div
-                          class="flex items-start space-x-2 p-3 bg-gradient-to-r from-primary/10 to-primary/5 rounded"
+                          class="flex items-start space-x-2 p-3 bg-linear-to-r from-primary/10 to-primary/5 rounded"
                         >
                           <span class="text-lg">🛡️</span>
                           <div>
@@ -1009,7 +1009,7 @@ const setCurrentStep = (step) => {
                       </div>
                     </div>
 
-                    <div class="mt-4 p-4 bg-gradient-to-r from-success/20 to-info/20 rounded-lg">
+                    <div class="mt-4 p-4 bg-linear-to-r from-success/20 to-info/20 rounded-lg">
                       <div class="font-bold mb-2 flex items-center">
                         <span class="mr-2">📋</span>申請條件
                       </div>
@@ -1036,20 +1036,20 @@ const setCurrentStep = (step) => {
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div
-                    class="text-center p-4 bg-gradient-to-b from-primary/10 to-primary/5 rounded-lg"
+                    class="text-center p-4 bg-linear-to-b from-primary/10 to-primary/5 rounded-lg"
                   >
                     <div class="text-2xl mb-2">🛡️</div>
                     <div class="font-semibold text-sm">勞保保障</div>
                     <div class="text-xs text-base-content/70 mt-1">訓練期間加入勞保</div>
                   </div>
                   <div
-                    class="text-center p-4 bg-gradient-to-b from-success/10 to-success/5 rounded-lg"
+                    class="text-center p-4 bg-linear-to-b from-success/10 to-success/5 rounded-lg"
                   >
                     <div class="text-2xl mb-2">📜</div>
                     <div class="font-semibold text-sm">結訓證書</div>
                     <div class="text-xs text-base-content/70 mt-1">完成課程獲得證書</div>
                   </div>
-                  <div class="text-center p-4 bg-gradient-to-b from-info/10 to-info/5 rounded-lg">
+                  <div class="text-center p-4 bg-linear-to-b from-info/10 to-info/5 rounded-lg">
                     <div class="text-2xl mb-2">💼</div>
                     <div class="font-semibold text-sm">就業輔導</div>
                     <div class="text-xs text-base-content/70 mt-1">協助找工作和檢定</div>
@@ -1062,7 +1062,7 @@ const setCurrentStep = (step) => {
 
         <!-- 重要提醒 -->
         <div
-          class="card bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20 shadow-lg"
+          class="card bg-linear-to-r from-primary/10 to-secondary/10 border-primary/20 shadow-lg"
         >
           <div class="card-body">
             <h3 class="card-title text-xl font-bold">
@@ -1220,7 +1220,7 @@ const setCurrentStep = (step) => {
               打電話詢問
             </a>
           </div>
-          <div class="mt-8 p-6 bg-gradient-to-r from-success/10 to-info/10 rounded-lg">
+          <div class="mt-8 p-6 bg-linear-to-r from-success/10 to-info/10 rounded-lg">
             <div class="text-4xl mb-3">🚀</div>
             <h4 class="text-xl font-bold mb-2">準備好開始你的前端之旅了嗎？</h4>
             <p class="text-base-content/70">

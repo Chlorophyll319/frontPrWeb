@@ -8,7 +8,7 @@ meta:
 </route>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-base-100 to-base-200/30">
+  <div class="min-h-screen bg-linear-to-br from-base-100 to-base-200/30">
     <!-- Loading State -->
     <div v-if="loading" class="hero min-h-screen">
       <div class="hero-content text-center">
@@ -63,7 +63,7 @@ meta:
               class="w-full h-64 md:h-80 lg:h-96 object-cover"
             />
             <div
-              class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"
+              class="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent"
             ></div>
           </div>
         </div>
@@ -133,7 +133,7 @@ meta:
       <!-- Article Summary -->
       <div v-if="article.summary" class="mb-8">
         <div
-          class="bg-gradient-to-r from-primary/10 via-primary/5 to-secondary/10 rounded-2xl p-6 border-l-4 border-primary shadow-lg"
+          class="bg-linear-to-r from-primary/10 via-primary/5 to-secondary/10 rounded-2xl p-6 border-l-4 border-primary shadow-lg"
         >
           <div class="flex items-start gap-3">
             <div class="text-primary mt-1">
