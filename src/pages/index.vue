@@ -10,7 +10,7 @@ meta:
 <template>
   <div class="min-h-screen">
     <!-- Hero Section ---->
-    <section class="hero min-h-screen bg-gradient-to-br from-base-100 to-base-200/50 relative">
+    <section class="hero min-h-screen bg-linear-to-br from-base-100 to-base-200/50 relative">
       <!-- 背景裝飾 GIF -->
       <!-- 色彩增值+相對寬度 https://cdn-icons-gif.flaticon.com/12753/12753496.gif 手機板不顯示，平板與電腦顯示 -->
       <div
@@ -32,7 +32,7 @@ meta:
             >
               有時候人生就是會<br class="hidden md:block" />
               <span
-                class="font-extrabold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+                class="font-extrabold bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent"
                 >卡在一個不上不下的地方</span
               >
             </h1>
@@ -90,7 +90,7 @@ meta:
               <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
                 <!-- 絕對定位分隔線 -->
                 <div
-                  class="hidden lg:block absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-base-300 to-transparent pointer-events-none"
+                  class="hidden lg:block absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-linear-to-b from-transparent via-base-300 to-transparent pointer-events-none"
                 ></div>
 
                 <!-- 左側：痛點描述 -->
@@ -117,7 +117,7 @@ meta:
                     <!-- 痛點1 -->
                     <div class="flex items-center gap-3">
                       <div
-                        class="w-5 h-5 bg-secondary/20 rounded-full flex items-center justify-center flex-shrink-0"
+                        class="w-5 h-5 bg-secondary/20 rounded-full flex items-center justify-center shrink-0"
                       >
                         <svg
                           class="w-2.5 h-2.5 text-secondary"
@@ -144,7 +144,7 @@ meta:
                     <!-- 痛點2 -->
                     <div class="flex items-center gap-3">
                       <div
-                        class="w-5 h-5 bg-accent/20 rounded-full flex items-center justify-center flex-shrink-0"
+                        class="w-5 h-5 bg-accent/20 rounded-full flex items-center justify-center shrink-0"
                       >
                         <svg
                           class="w-2.5 h-2.5 text-accent"
@@ -170,7 +170,7 @@ meta:
                     <!-- 痛點3 -->
                     <div class="flex items-center gap-3">
                       <div
-                        class="w-5 h-5 bg-neutral/20 rounded-full flex items-center justify-center flex-shrink-0"
+                        class="w-5 h-5 bg-neutral/20 rounded-full flex items-center justify-center shrink-0"
                       >
                         <svg
                           class="w-2.5 h-2.5 text-neutral"
@@ -221,7 +221,7 @@ meta:
                     <!-- 完全免費 -->
                     <div class="flex items-center gap-4 animate-pulse" style="animation-delay: 0s">
                       <div
-                        class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 animate-bounce"
+                        class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center shrink-0 animate-bounce"
                         style="animation-delay: 0.2s"
                       >
                         <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 20 20">
@@ -246,7 +246,7 @@ meta:
                       style="animation-delay: 0.5s"
                     >
                       <div
-                        class="w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center flex-shrink-0 animate-bounce"
+                        class="w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center shrink-0 animate-bounce"
                         style="animation-delay: 0.7s"
                       >
                         <svg class="w-6 h-6 text-secondary" fill="currentColor" viewBox="0 0 20 20">
@@ -345,8 +345,12 @@ meta:
       <!-- My Story Section -->
       <section id="story" class="mb-16 lg:mb-24">
         <div class="text-center mb-12">
-          <h2 class="text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-primary mb-4">為什麼想做這個網站？</h2>
-          <p class="text-lg xl:text-xl 2xl:text-2xl text-base-content/70 mb-6">做這個網站的契機，其實來自一次閒聊…</p>
+          <h2 class="text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-primary mb-4">
+            為什麼想做這個網站？
+          </h2>
+          <p class="text-lg xl:text-xl 2xl:text-2xl text-base-content/70 mb-6">
+            做這個網站的契機，其實來自一次閒聊…
+          </p>
           <div class="divider divider-primary w-24 mx-auto"></div>
           <!-- 情感式敘事內容 -->
           <div class="story-content max-w-4xl mx-auto">
@@ -435,7 +439,7 @@ meta:
       </section>
 
       <!-- Course Introduction -->
-      <section class="mb-16 lg:mb-24 bg-gradient-to-b from-base-200/20 via-primary/5 to-primary/10">
+      <section class="mb-16 lg:mb-24 bg-linear-to-b from-base-200/20 via-primary/5 to-primary/10">
         <div class="container mx-auto px-4">
           <div class="text-center mb-12 pt-16">
             <h2 class="text-3xl lg:text-4xl font-bold text-primary mb-4">所以這是什麼樣的課？</h2>
@@ -652,10 +656,10 @@ meta:
             class="hero-content flex-col lg:flex-row items-center gap-12 max-w-6xl py-12 lg:py-16"
           >
             <!-- Mobile Mockup - Left Side -->
-            <div class="flex-shrink-0">
-              <div class="mockup-phone border-primary shadow-2xl aspect-[9/19]">
+            <div class="shrink-0">
+              <div class="mockup-phone border-primary shadow-2xl aspect-9/19">
                 <div class="mockup-phone-camera"></div>
-                <div class="mockup-phone-display w-full max-w-sm aspect-[9/19] flex flex-col">
+                <div class="mockup-phone-display w-full max-w-sm aspect-9/19 flex flex-col">
                   <div class="artboard artboard-demo phone-1 bg-base-100 p-2 text-center text-xs">
                     {{
                       String(now.getHours()).padStart(2, '0') +
@@ -713,17 +717,17 @@ meta:
 
               <div class="space-y-4 mb-10">
                 <div class="flex items-center gap-4">
-                  <div class="w-3 h-3 bg-primary rounded-full flex-shrink-0"></div>
+                  <div class="w-3 h-3 bg-primary rounded-full shrink-0"></div>
                   <!-- 這邊文案怪怪的 -->
                   <span class="text-base-content/70">真實學員的困惑與解答</span>
                 </div>
                 <div class="flex items-center gap-4">
-                  <div class="w-3 h-3 bg-secondary rounded-full flex-shrink-0"></div>
+                  <div class="w-3 h-3 bg-secondary rounded-full shrink-0"></div>
                   <!-- 這邊文案怪怪的 -->
                   <span class="text-base-content/70">過來人的誠實分享</span>
                 </div>
                 <div class="flex items-center gap-4">
-                  <div class="w-3 h-3 bg-accent rounded-full flex-shrink-0"></div>
+                  <div class="w-3 h-3 bg-accent rounded-full shrink-0"></div>
                   <!-- 這邊文案怪怪的 -->
                   <span class="text-base-content/70">沒有話術，只有經驗</span>
                 </div>
@@ -754,14 +758,14 @@ meta:
         <!-- 這個區塊，想要用 bento grid 風 -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mx-auto">
           <div
-            class="card bg-gradient-to-br from-primary/20 to-primary/5 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+            class="card bg-linear-to-br from-primary/20 to-primary/5 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
           >
             <div class="card-body items-center text-center p-8">
               <div class="text-6xl mb-6">
                 <img src="https://cdn-icons-png.flaticon.com/128/764/764279.png" alt="課程模組" />
               </div>
               <h2 class="card-title text-lg mb-4">課程模組介紹</h2>
-              <p class="text-sm text-center mb-8 leading-relaxed flex-grow">
+              <p class="text-sm text-center mb-8 leading-relaxed grow">
                 到底這堂課教什麼？HTML、Vue、API、Node.js…就業市場上必備的/熱門的都有。
               </p>
               <div class="card-actions">
@@ -774,14 +778,14 @@ meta:
           </div>
 
           <div
-            class="card bg-gradient-to-br from-secondary/20 to-secondary/5 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+            class="card bg-linear-to-br from-secondary/20 to-secondary/5 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
           >
             <div class="card-body items-center text-center p-8">
               <div class="text-6xl mb-6">
                 <img src="https://cdn-icons-png.flaticon.com/128/4403/4403603.png" alt="faqs" />
               </div>
               <h2 class="card-title text-lg mb-4">常見問題整理</h2>
-              <p class="text-sm text-center mb-8 leading-relaxed flex-grow">
+              <p class="text-sm text-center mb-8 leading-relaxed grow">
                 關於報名、課程制度、政府提供的資源，我把我問過的都整理下來了。
               </p>
               <div class="card-actions">
@@ -793,7 +797,7 @@ meta:
           </div>
 
           <div
-            class="card bg-gradient-to-br from-accent/20 to-accent/5 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+            class="card bg-linear-to-br from-accent/20 to-accent/5 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
           >
             <div class="card-body items-center text-center p-8">
               <div class="text-6xl mb-6">
@@ -803,7 +807,7 @@ meta:
                 />
               </div>
               <h2 class="card-title text-lg mb-4">學員成果展示</h2>
-              <p class="text-sm text-center mb-8 leading-relaxed flex-grow">
+              <p class="text-sm text-center mb-8 leading-relaxed grow">
                 半年內我們從零寫出這些作品，不是完美，但真的做出來了。
               </p>
               <div class="card-actions">
@@ -815,14 +819,14 @@ meta:
           </div>
 
           <div
-            class="card bg-gradient-to-br from-warning/20 to-warning/5 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+            class="card bg-linear-to-br from-warning/20 to-warning/5 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
           >
             <div class="card-body items-center text-center p-8">
               <div class="text-6xl mb-6">
                 <img src="https://cdn-icons-png.flaticon.com/128/4014/4014511.png" alt="報名流程" />
               </div>
               <h2 class="card-title text-lg mb-4">報名流程與提醒</h2>
-              <p class="text-sm text-center mb-8 leading-relaxed flex-grow">
+              <p class="text-sm text-center mb-8 leading-relaxed grow">
                 要去哪報？要帶什麼？名額會不會爆滿？我幫你列成檢查清單了。
               </p>
               <div class="card-actions">
@@ -854,7 +858,7 @@ meta:
             </figure>
             <div class="card-body">
               <h2 class="card-title">{{ mod.title }}</h2>
-              <p class="text-sm flex-grow">{{ mod.description }}</p>
+              <p class="text-sm grow">{{ mod.description }}</p>
               <div class="card-actions justify-between items-center">
                 <div class="badge badge-outline">{{ mod.category }}</div>
               </div>
@@ -924,12 +928,12 @@ meta:
       </section>
       <!-- Final CTA - 重構為符合CTA設計要求 -->
       <section
-        class="relative bg-gradient-to-br from-primary/20 via-primary/10 to-secondary/20 py-16 lg:py-24 overflow-hidden"
+        class="relative bg-linear-to-br from-primary/20 via-primary/10 to-secondary/20 py-16 lg:py-24 overflow-hidden"
       >
         <!-- 背景裝飾 -->
         <div class="absolute inset-0 opacity-50">
           <div
-            class="w-full h-full bg-gradient-to-r from-transparent via-primary/5 to-transparent"
+            class="w-full h-full bg-linear-to-r from-transparent via-primary/5 to-transparent"
           ></div>
         </div>
 
