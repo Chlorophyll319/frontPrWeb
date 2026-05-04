@@ -1,4 +1,4 @@
-import { setupLayouts } from 'virtual:generated-layouts'
+﻿import { setupLayouts } from 'virtual:generated-layouts'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { routes } from 'vue-router/auto-routes'
 import { START_LOCATION } from 'vue-router/auto'

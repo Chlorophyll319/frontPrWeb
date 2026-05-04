@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <ul :class="menuClass">
     <template v-for="item in navItems" :key="item.to">
       <li v-if="item.show">

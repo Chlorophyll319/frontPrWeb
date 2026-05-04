@@ -1,4 +1,4 @@
-<route lang="yaml">
+﻿<route lang="yaml">
 meta:
   title: '報名流程'
   # 有沒有登入都能看
