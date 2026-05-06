@@ -27,7 +27,7 @@ router.beforeEach(async (to, from, next) => {
       user.login({ ...user.$state, token: data.token })
     } catch (error) {
       console.error(error)
-      user.token = ''
+      user.logout()
     }
   }
 
