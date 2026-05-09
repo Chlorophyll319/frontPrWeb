@@ -286,20 +286,17 @@ meta:
         </div>
       </template>
     </Dialog>
-    <ConfirmDialog />
   </div>
 </template>
 
 <script setup>
 import { ref, reactive, computed, watch, onMounted } from 'vue'
-import { useConfirm } from 'primevue/useconfirm'
 import { useToast } from 'primevue/usetoast'
 import Select from 'primevue/select'
 import ToggleSwitch from 'primevue/toggleswitch'
 import InputNumber from 'primevue/inputnumber'
 import projectsApi from '@/services/projects.js'
 
-const confirm = useConfirm()
 const toast = useToast()
 
 // 狀態

@@ -298,19 +298,16 @@ meta:
         </div>
       </template>
     </Dialog>
-    <ConfirmDialog />
   </div>
 </template>
 
 <script setup>
 import { ref, reactive, computed, watch, onMounted } from 'vue'
-import { useConfirm } from 'primevue/useconfirm'
 import { useToast } from 'primevue/usetoast'
 import Select from 'primevue/select'
 import ToggleSwitch from 'primevue/toggleswitch'
 import blogsApi from '@/services/blogs.js' // ← 改用 blogsApi
 
-const confirm = useConfirm()
 const toast = useToast()
 
 const blogs = ref([])
