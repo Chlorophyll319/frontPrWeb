@@ -91,20 +91,6 @@ meta:
                 >
               </button>
             </div>
-            <div class="tooltip">
-              <div class="tooltip-content">
-                <div
-                  class="animate-bounce bg-accent text-accent-content px-3 py-1 rounded-full text-sm font-semibold -rotate-6 shadow-lg"
-                >
-                  有任何問題可以放在這裡但可能不會即時回應
-                </div>
-              </div>
-              <button class="btn btn-accent text-sm px-3 py-2">
-                <a href="https://my.cbox.ws/moreQA" target="_blank" rel="noopener noreferrer"
-                  >非官方 Cbox 留言區</a
-                >
-              </button>
-            </div>
           </div>
         </div>
 
