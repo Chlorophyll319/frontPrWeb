@@ -218,6 +218,9 @@ meta:
 <script setup>
 // Vue 相關功能導入
 import { ref, onMounted, computed, nextTick, watch } from 'vue'
+
+// module-scope：避免污染 window，也防止多頁面共用同一實例
+let mermaidInstance = null
 import { useRoute } from 'vue-router'
 // 文章資料 API
 import blogs from '@/services/blogs.js'
@@ -547,7 +550,7 @@ const initializeExtraFeatures = async () => {
       })
 
       // 儲存 mermaid 實例供後續使用
-      window.mermaidInstance = mermaidModule.default
+      mermaidInstance = mermaidModule.default
     } else {
       console.warn('Mermaid 載入失敗')
     }
@@ -593,7 +596,7 @@ const initializeExtraFeatures = async () => {
 
 // 重新渲染 Mermaid 圖表
 const renderMermaidCharts = async () => {
-  if (typeof window !== 'undefined' && window.mermaidInstance) {
+  if (mermaidInstance) {
     try {
       // 等待下一個 tick 確保 DOM 已更新
       await nextTick()
@@ -613,7 +616,7 @@ const renderMermaidCharts = async () => {
             const uniqueId = `mermaid-${i}-${Date.now()}`
 
             // 使用新的渲染方式
-            const { svg } = await window.mermaidInstance.render(uniqueId, graphDefinition.trim())
+            const { svg } = await mermaidInstance.render(uniqueId, graphDefinition.trim())
 
             // 設置 SVG 內容
             element.innerHTML = svg
