@@ -121,13 +121,15 @@ meta:
           <!-- CTA 按鈕 -->
           <div class="animate-fade-in-up delay-600">
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button
+              <RouterLink
+                to="/howToSignUp"
                 class="btn btn-primary btn-lg px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               >
                 立即報名
-              </button>
+              </RouterLink>
               <button
                 class="btn btn-outline btn-lg px-8 py-4 text-lg font-semibold hover:bg-primary hover:border-primary transition-all duration-300"
+                @click="scrollToModules"
               >
                 了解更多
               </button>
@@ -138,7 +140,7 @@ meta:
     </section>
 
     <!-- 課程模組區塊 -->
-    <div class="container mx-auto px-4 py-16">
+    <div id="modules-section" class="container mx-auto px-4 py-16">
       <div class="text-center mb-12">
         <h2 class="text-3xl lg:text-4xl font-bold mb-4">
           <span class="text-base-content">核心</span>
@@ -353,7 +355,12 @@ meta:
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { RouterLink } from 'vue-router'
 import modulesApi from '@/services/modules.js'
+
+const scrollToModules = () => {
+  document.getElementById('modules-section')?.scrollIntoView({ behavior: 'smooth' })
+}
 
 const modules = ref([])
 const isLoading = ref(true)
