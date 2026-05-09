@@ -98,7 +98,7 @@ meta:
             <template #body="{ data }">
               <div class="flex items-center gap-2">
                 <ToggleSwitch
-                  id="visible"
+                  :id="`visible-${data._id}`"
                   name="visible"
                   :modelValue="data.visible"
                   @update:modelValue="(val) => toggleVisible(data, val)"

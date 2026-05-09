@@ -1,7 +1,7 @@
 ﻿<route lang="yaml">
 meta:
   layout: admin
-  title: 課程模組管理
+  title: FAQ 管理
   login: login-only
   admin: true
 </route>
@@ -96,7 +96,7 @@ meta:
             <template #body="{ data }">
               <div class="flex items-center gap-2">
                 <ToggleSwitch
-                  id="visible"
+                  :id="`visible-${data._id}`"
                   name="visible"
                   :modelValue="data.visible"
                   @update:modelValue="(val) => toggleVisible(data, val)"
