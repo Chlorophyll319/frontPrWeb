@@ -429,11 +429,11 @@ const saveProject = async () => {
     return
   }
 
-  // 簡單 URL 格式檢查（避免後端直接打槍）
+  // URL 格式檢查：只允許 http/https 協定，防止 javascript: / data: 等危險協定
   const isUrl = (u) => {
     try {
-      new URL(u)
-      return true
+      const { protocol } = new URL(u)
+      return protocol === 'http:' || protocol === 'https:'
     } catch {
       return false
     }

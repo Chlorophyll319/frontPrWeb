@@ -892,7 +892,7 @@ meta:
                 </div>
                 <p class="text-sm">{{ proj.description }}</p>
                 <div class="card-actions">
-                  <a :href="proj.demoUrl" target="_blank" class="btn btn-primary btn-sm"
+                  <a :href="proj.demoUrl" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm"
                     >查看作品</a
                   >
                 </div>
@@ -1056,6 +1056,7 @@ const modules = ref([])
 const projects = ref([])
 const faqs = ref([])
 
+// sortOrder === 0 為首頁展示模組的約定：後端建立模組時以 0 標示「顯示於首頁」
 const modulesUi = computed(() =>
   Array.isArray(modules.value) ? modules.value.filter((m) => m.sortOrder === 0) : [],
 )
