@@ -37,7 +37,7 @@ apiAuth.interceptors.response.use(
 
         error.config.headers.Authorization = `Bearer ${data.token}`
 
-        return axios(error.config)
+        return apiAuth.request(error.config)
       } catch {
         user.logout()
       }
