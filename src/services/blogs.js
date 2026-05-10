@@ -1,4 +1,4 @@
-import apiModule from './api'
+﻿import apiModule from './api'
 const { api, apiAuth } = apiModule
 
 /**
@@ -36,11 +36,12 @@ const { api, apiAuth } = apiModule
 
 export default {
   /**
-   * @description 前台取得所有已上架的部落格
-   * @returns {Promise<ApiListResponse<Blog[]>>} 內含已上架部落格陣列的回應
+   * @description 前台取得已上架的部落格（支援 tag 篩選與分頁）
+   * @param {{ tag?: string, page?: number, limit?: number }} params
+   * @returns {Promise<{blogs: Blog[], total: number, page: number, totalPages: number}>}
    */
-  get() {
-    return api.get('/blogs')
+  get({ tag, page, limit } = {}) {
+    return api.get('/blogs', { params: { tag, page, limit } })
   },
   /**
    * @description 前台根據 ID 取得單一一個已上架的部落格

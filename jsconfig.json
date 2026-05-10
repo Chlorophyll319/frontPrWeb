@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     },
     "moduleResolution": "bundler",
     "target": "ES2020",

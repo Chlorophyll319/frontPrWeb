@@ -1,4 +1,4 @@
-<route lang="yaml">
+﻿<route lang="yaml">
 meta:
   layout: admin
   title: 專題管理
@@ -98,7 +98,7 @@ meta:
             <template #body="{ data }">
               <div class="flex items-center gap-2">
                 <ToggleSwitch
-                  id="visible"
+                  :id="`visible-${data._id}`"
                   name="visible"
                   :modelValue="data.visible"
                   @update:modelValue="(val) => toggleVisible(data, val)"
@@ -273,33 +273,30 @@ meta:
             label="取消"
             icon="pi pi-times"
             text
-            class="!px-4 !py-2"
+            class="px-4! py-2!"
             @click="showDialog = false"
             id="cancelProjectButton"
           />
           <Button
             :label="editingProject ? '更新' : '新增'"
             icon="pi pi-check"
-            class="!px-5 !py-2 !bg-indigo-600 hover:!bg-indigo-700 !border-indigo-600"
+            class="px-5! py-2! bg-indigo-600! hover:bg-indigo-700! border-indigo-600!"
             @click="saveProject"
           />
         </div>
       </template>
     </Dialog>
-    <ConfirmDialog />
   </div>
 </template>
 
 <script setup>
 import { ref, reactive, computed, watch, onMounted } from 'vue'
-import { useConfirm } from 'primevue/useconfirm'
 import { useToast } from 'primevue/usetoast'
 import Select from 'primevue/select'
 import ToggleSwitch from 'primevue/toggleswitch'
 import InputNumber from 'primevue/inputnumber'
 import projectsApi from '@/services/projects.js'
 
-const confirm = useConfirm()
 const toast = useToast()
 
 // 狀態
@@ -432,11 +429,11 @@ const saveProject = async () => {
     return
   }
 
-  // 簡單 URL 格式檢查（避免後端直接打槍）
+  // URL 格式檢查：只允許 http/https 協定，防止 javascript: / data: 等危險協定
   const isUrl = (u) => {
     try {
-      new URL(u)
-      return true
+      const { protocol } = new URL(u)
+      return protocol === 'http:' || protocol === 'https:'
     } catch {
       return false
     }

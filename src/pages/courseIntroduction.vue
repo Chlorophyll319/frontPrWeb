@@ -1,4 +1,4 @@
-<route lang="yaml">
+﻿<route lang="yaml">
 meta:
   title: '課程介紹'
   # 有沒有登入都能看
@@ -10,10 +10,10 @@ meta:
 <template>
   <!-- 文案待新增 -->
   <!-- 資料庫內容待新增 -->
-  <div class="min-h-screen bg-gradient-to-br from-base-200 via-base-100 to-base-200">
+  <div class="min-h-screen bg-linear-to-br from-base-200 via-base-100 to-base-200">
     <!-- Hero Section -->
     <section
-      class="hero min-h-96 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 relative overflow-hidden"
+      class="hero min-h-96 bg-linear-to-br from-primary/5 via-transparent to-secondary/5 relative overflow-hidden"
     >
       <!-- 背景裝飾 -->
       <div class="absolute inset-0 opacity-10">
@@ -30,11 +30,11 @@ meta:
           <!-- 標籤 -->
           <div class="animate-fade-in-up">
             <div
-              class="inline-flex items-center bg-gradient-to-r from-primary to-secondary p-[1px] rounded-full"
+              class="inline-flex items-center bg-linear-to-r from-primary to-secondary p-px rounded-full"
             >
               <div class="bg-base-100 rounded-full px-4 py-2">
                 <span
-                  class="text-xs font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+                  class="text-xs font-bold bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent"
                 >
                   勞動部職前訓練課程
                 </span>
@@ -44,10 +44,12 @@ meta:
 
           <!-- 主標題 -->
           <div class="space-y-6 animate-fade-in-up delay-200">
-            <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-tight">
+            <h1
+              class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-tight"
+            >
               <span class="text-base-content">半年紮實訓練</span><br />
               <span
-                class="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent"
+                class="bg-linear-to-r from-primary via-secondary to-accent bg-clip-text text-transparent"
               >
                 從零到一成為前端工程師
               </span>
@@ -67,7 +69,7 @@ meta:
           <div class="animate-fade-in-up delay-400">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               <div
-                class="bg-gradient-to-br from-base-100 to-base-200 rounded-2xl p-8 shadow-xl border border-base-300 hover:shadow-2xl transition-all duration-300 group"
+                class="bg-linear-to-br from-base-100 to-base-200 rounded-2xl p-8 shadow-xl border border-base-300 hover:shadow-2xl transition-all duration-300 group"
               >
                 <div class="text-center space-y-3">
                   <div
@@ -77,13 +79,13 @@ meta:
                   </div>
                   <div class="text-base-content/60 font-semibold text-lg">訓練時數</div>
                   <div
-                    class="w-12 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"
+                    class="w-12 h-1 bg-linear-to-r from-primary to-secondary mx-auto rounded-full"
                   ></div>
                 </div>
               </div>
 
               <div
-                class="bg-gradient-to-br from-base-100 to-base-200 rounded-2xl p-8 shadow-xl border border-base-300 hover:shadow-2xl transition-all duration-300 group"
+                class="bg-linear-to-br from-base-100 to-base-200 rounded-2xl p-8 shadow-xl border border-base-300 hover:shadow-2xl transition-all duration-300 group"
               >
                 <div class="text-center space-y-3">
                   <div
@@ -93,13 +95,13 @@ meta:
                   </div>
                   <div class="text-base-content/60 font-semibold text-lg">個月課程</div>
                   <div
-                    class="w-12 h-1 bg-gradient-to-r from-secondary to-accent mx-auto rounded-full"
+                    class="w-12 h-1 bg-linear-to-r from-secondary to-accent mx-auto rounded-full"
                   ></div>
                 </div>
               </div>
 
               <div
-                class="bg-gradient-to-br from-base-100 to-base-200 rounded-2xl p-8 shadow-xl border border-base-300 hover:shadow-2xl transition-all duration-300 group"
+                class="bg-linear-to-br from-base-100 to-base-200 rounded-2xl p-8 shadow-xl border border-base-300 hover:shadow-2xl transition-all duration-300 group"
               >
                 <div class="text-center space-y-3">
                   <div
@@ -109,7 +111,7 @@ meta:
                   </div>
                   <div class="text-base-content/60 font-semibold text-lg">符合資格</div>
                   <div
-                    class="w-12 h-1 bg-gradient-to-r from-accent to-primary mx-auto rounded-full"
+                    class="w-12 h-1 bg-linear-to-r from-accent to-primary mx-auto rounded-full"
                   ></div>
                 </div>
               </div>
@@ -119,13 +121,15 @@ meta:
           <!-- CTA 按鈕 -->
           <div class="animate-fade-in-up delay-600">
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button
+              <RouterLink
+                to="/howToSignUp"
                 class="btn btn-primary btn-lg px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               >
                 立即報名
-              </button>
+              </RouterLink>
               <button
                 class="btn btn-outline btn-lg px-8 py-4 text-lg font-semibold hover:bg-primary hover:border-primary transition-all duration-300"
+                @click="scrollToModules"
               >
                 了解更多
               </button>
@@ -136,13 +140,13 @@ meta:
     </section>
 
     <!-- 課程模組區塊 -->
-    <div class="container mx-auto px-4 py-16">
+    <div id="modules-section" class="container mx-auto px-4 py-16">
       <div class="text-center mb-12">
         <h2 class="text-3xl lg:text-4xl font-bold mb-4">
           <span class="text-base-content">核心</span>
           <span class="text-primary">課程模組</span>
         </h2>
-        <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+        <div class="w-24 h-1 bg-linear-to-r from-primary to-secondary mx-auto rounded-full"></div>
       </div>
 
       <!-- Loading State -->
@@ -189,7 +193,10 @@ meta:
       </div>
 
       <!-- Content -->
-      <div v-else class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+      <div
+        v-else
+        class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+      >
         <div
           v-for="(module, index) in modules"
           :key="module._id"
@@ -216,7 +223,7 @@ meta:
             <div class="flex items-start gap-4">
               <!-- 序號圓圈 -->
               <div
-                class="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center"
+                class="shrink-0 w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center"
               >
                 <span class="text-primary font-bold text-sm">{{
                   String(index + 1).padStart(2, '0')
@@ -303,7 +310,7 @@ meta:
     <!-- 比較表 -->
     <div>
       <h3 class="text-2xl lg:text-3xl font-bold text-center mb-8">與坊間課程比較</h3>
-      
+
       <!-- 桌面版表格 -->
       <div class="hidden md:block overflow-x-auto">
         <table class="table w-full shadow-lg">
@@ -348,7 +355,12 @@ meta:
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { RouterLink } from 'vue-router'
 import modulesApi from '@/services/modules.js'
+
+const scrollToModules = () => {
+  document.getElementById('modules-section')?.scrollIntoView({ behavior: 'smooth' })
+}
 
 const modules = ref([])
 const isLoading = ref(true)

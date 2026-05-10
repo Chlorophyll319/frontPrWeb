@@ -25,3 +25,7 @@ dist-ssr
 
 .claude
 .mcp.json
+
+.agents
+skills-lock.json
+.kiro

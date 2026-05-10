@@ -1,4 +1,4 @@
-<route lang="yaml">
+﻿<route lang="yaml">
 meta:
   title: '其他資訊'
   # 有沒有登入都能看
@@ -39,7 +39,7 @@ meta:
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="stroke-current flex-shrink-0 h-6 w-6"
+            class="stroke-current shrink-0 h-6 w-6"
             fill="none"
             viewBox="0 0 24 24"
           >
@@ -88,20 +88,6 @@ meta:
               <button class="btn btn-secondary text-sm px-3 py-2">
                 <a href="https://wdaweb.github.io/" target="_blank" rel="noopener noreferrer"
                   >前端班官方網站</a
-                >
-              </button>
-            </div>
-            <div class="tooltip">
-              <div class="tooltip-content">
-                <div
-                  class="animate-bounce bg-accent text-accent-content px-3 py-1 rounded-full text-sm font-semibold -rotate-6 shadow-lg"
-                >
-                  有任何問題可以放在這裡但可能不會即時回應
-                </div>
-              </div>
-              <button class="btn btn-accent text-sm px-3 py-2">
-                <a href="https://my.cbox.ws/moreQA" target="_blank" rel="noopener noreferrer"
-                  >非官方 Cbox 留言區</a
                 >
               </button>
             </div>
@@ -175,11 +161,6 @@ meta:
                   有任何問題可以放在這裡但可能不會即時回應
                 </div>
               </div>
-              <button class="btn btn-accent text-sm px-3 py-2">
-                <a href="https://my.cbox.ws/moreQA" target="_blank" rel="noopener noreferrer"
-                  >非官方 Cbox 留言區</a
-                >
-              </button>
             </div>
           </div>
         </div>

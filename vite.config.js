@@ -1,4 +1,4 @@
-import { fileURLToPath, URL } from 'node:url'
+﻿import { fileURLToPath, URL } from 'node:url'
 
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
@@ -59,7 +59,6 @@ export default defineConfig({
   ],
   optimizeDeps: {
     exclude: [
-      'vuetify',
       'vue-router',
       'unplugin-vue-router/runtime',
       'unplugin-vue-router/data-loaders',

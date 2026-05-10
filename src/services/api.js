@@ -1,4 +1,4 @@
-import axios from 'axios'
+﻿import axios from 'axios'
 import { useUserStore } from '@/stores/user'
 
 // 無須登入即可使用（接後端）
@@ -37,7 +37,7 @@ apiAuth.interceptors.response.use(
 
         error.config.headers.Authorization = `Bearer ${data.token}`
 
-        return axios(error.config)
+        return apiAuth.request(error.config)
       } catch {
         user.logout()
       }

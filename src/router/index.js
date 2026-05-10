@@ -1,4 +1,4 @@
-import { setupLayouts } from 'virtual:generated-layouts'
+﻿import { setupLayouts } from 'virtual:generated-layouts'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { routes } from 'vue-router/auto-routes'
 import { START_LOCATION } from 'vue-router/auto'
@@ -27,7 +27,7 @@ router.beforeEach(async (to, from, next) => {
       user.login({ ...user.$state, token: data.token })
     } catch (error) {
       console.error(error)
-      user.token = ''
+      user.logout()
     }
   }
 

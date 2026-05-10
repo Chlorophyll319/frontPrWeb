@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div class="min-h-screen bg-gray-50">
     <Menubar :model="menuItems" class="shadow-sm">
       <template #start>

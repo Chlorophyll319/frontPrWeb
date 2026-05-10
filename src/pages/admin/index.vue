@@ -1,4 +1,4 @@
-<route lang="yaml">
+﻿<route lang="yaml">
 meta:
   name: AdminDashboard
   layout: admin
@@ -172,9 +172,12 @@ const fetchStats = async () => {
     // 遍歷結果並更新統計數據
     stats.value.forEach((stat, index) => {
       const response = results[index]
-      // 根據 responseKey 從回應中取得資料陣列並計算其長度
-      if (response.data && Array.isArray(response.data[stat.responseKey])) {
-        stat.count = response.data[stat.responseKey].length
+      const data = response.data
+      // 優先使用後端回傳的 total 欄位；後端尚未實作時 fallback 到陣列長度
+      if (data && typeof data.total === 'number') {
+        stat.count = data.total
+      } else if (data && Array.isArray(data[stat.responseKey])) {
+        stat.count = data[stat.responseKey].length
       } else {
         console.warn(`Unexpected response structure for ${stat.title}`, response)
         stat.error = true

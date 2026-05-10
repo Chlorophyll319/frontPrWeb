@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div
     data-theme="cupcake"
     class="fixed top-0 left-0 w-full z-50 navbar bg-base-100 shadow-sm box-border"
@@ -49,7 +49,7 @@
         </label>
         <ul
           tabindex="0"
-          class="dropdown-content menu menu-sm mt-3 z-[1] p-2 shadow bg-base-100 rounded-xl w-52"
+          class="dropdown-content menu menu-sm mt-3 z-1 p-2 shadow bg-base-100 rounded-xl w-52"
         >
           <template v-for="item in navItems" :key="item.to">
             <li v-if="item.show">

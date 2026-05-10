@@ -1,4 +1,4 @@
-<route lang="yaml">
+﻿<route lang="yaml">
 meta:
   title: '其他資訊內容'
   # 有沒有登入都能看
@@ -8,7 +8,7 @@ meta:
 </route>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-base-100 to-base-200/30">
+  <div class="min-h-screen bg-linear-to-br from-base-100 to-base-200/30">
     <!-- Loading State -->
     <div v-if="loading" class="hero min-h-screen">
       <div class="hero-content text-center">
@@ -63,7 +63,7 @@ meta:
               class="w-full h-64 md:h-80 lg:h-96 object-cover"
             />
             <div
-              class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"
+              class="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent"
             ></div>
           </div>
         </div>
@@ -133,7 +133,7 @@ meta:
       <!-- Article Summary -->
       <div v-if="article.summary" class="mb-8">
         <div
-          class="bg-gradient-to-r from-primary/10 via-primary/5 to-secondary/10 rounded-2xl p-6 border-l-4 border-primary shadow-lg"
+          class="bg-linear-to-r from-primary/10 via-primary/5 to-secondary/10 rounded-2xl p-6 border-l-4 border-primary shadow-lg"
         >
           <div class="flex items-start gap-3">
             <div class="text-primary mt-1">
@@ -216,204 +216,18 @@ meta:
 </template>
 
 <script setup>
-// Vue 相關功能導入
-import { ref, onMounted, computed, nextTick, watch } from 'vue'
+import { ref, computed, onMounted, nextTick, watch } from 'vue'
+
+let mermaidInstance = null
 import { useRoute } from 'vue-router'
-// 文章資料 API
 import blogs from '@/services/blogs.js'
-// Markdown 核心解析器
-import MarkdownIt from 'markdown-it'
-// 程式碼語法高亮庫
-import hljs from 'highlight.js'
-// 程式碼高亮的 CSS 樣式
-import 'highlight.js/styles/github.css'
+import markdownUtil from '@/utils/markdown.js'
 
-// 獲取當前路由資訊（包含文章 ID）
 const route = useRoute()
-// 文章內容資料
 const article = ref(null)
-// 載入狀態
 const loading = ref(true)
-// 錯誤訊息
 const error = ref(null)
-// Markdown 解析器實例
-const md = ref(null)
-
-/**
- * 初始化 Markdown 解析器
- * 這是整個 Markdown 渲染的核心設定函數
- */
-const initializeMarkdown = async () => {
-  try {
-    /**
-     * 動態載入 Markdown 插件
-     * 使用 Promise.all 並行載入多個插件，提高載入效率
-     * - markdownItEmoji: 表情符號支援 (如 :smile: → 😊)
-     * - markdownItFootnote: 腳註功能支援
-     * - markdownItTaskLists: 任務清單支援 (如 - [x] 已完成)
-     */
-    const [markdownItEmojiModule, markdownItFootnoteModule, markdownItTaskListsModule] =
-      await Promise.all([
-        import('markdown-it-emoji').catch(() => null),
-        import('markdown-it-footnote').catch(() => null),
-        import('markdown-it-task-lists').catch(() => null),
-      ])
-
-    /**
-     * 建立 Markdown-it 解析器實例
-     * 這是將 Markdown 文本轉換為 HTML 的核心引擎
-     */
-    const markdownInstance = new MarkdownIt({
-      html: true, // 允許在 Markdown 中使用原始 HTML 標籤
-      linkify: true, // 自動將 URL 轉換為可點擊的連結
-      typographer: true, // 啟用智慧標點符號替換 (如 " → ")
-
-      /**
-       * 自訂程式碼區塊的語法高亮處理
-       * 當遇到 ```javascript 這樣的程式碼區塊時會調用此函數
-       * @param {string} str - 程式碼內容
-       * @param {string} lang - 程式語言 (如 javascript, python)
-       */
-      highlight: function (str, lang) {
-        // 檢查指定的語言是否被 highlight.js 支援
-        if (lang && hljs.getLanguage(lang)) {
-          try {
-            // 使用 highlight.js 進行語法高亮
-            return `<pre><code class="hljs language-${lang}">${hljs.highlight(str, { language: lang, ignoreIllegals: true }).value}</code></pre>`
-          } catch (__) {
-            // 如果高亮失敗，降級到基本顯示
-          }
-        }
-        // 沒有指定語言或語言不支援時，顯示純文本（但進行 HTML 轉義）
-        return `<pre><code class="hljs">${markdownInstance.utils.escapeHtml(str)}</code></pre>`
-      },
-    })
-
-    /**
-     * 將插件添加到 Markdown 解析器
-     * 使用鏈式調用的方式依序添加各種功能插件
-     */
-    if (markdownItEmojiModule && markdownItEmojiModule.full) {
-      markdownInstance.use(markdownItEmojiModule.full) // 使用完整版 emoji 支援
-    }
-    if (markdownItFootnoteModule && markdownItFootnoteModule.default) {
-      markdownInstance.use(markdownItFootnoteModule.default) // 添加腳註功能
-    }
-    if (markdownItTaskListsModule && markdownItTaskListsModule.default) {
-      markdownInstance.use(markdownItTaskListsModule.default, { enabled: true }) // 添加任務清單，並啟用功能
-    }
-
-    // 將配置完成的解析器存到響應式變數中
-    md.value = markdownInstance
-  } catch (error) {
-    console.warn('部分 Markdown 插件載入失敗，使用基本功能:', error)
-
-    /**
-     * 錯誤處理：如果插件載入失敗，建立一個基本的 Markdown 解析器
-     * 這確保即使某些進階功能無法使用，基本的 Markdown 功能仍然可以正常運作
-     */
-    const basicMarkdownInstance = new MarkdownIt({
-      html: true, // 保持基本設定
-      linkify: true,
-      typographer: true,
-      highlight: function (str, lang) {
-        if (lang && hljs.getLanguage(lang)) {
-          try {
-            return `<pre><code class="hljs language-${lang}">${hljs.highlight(str, { language: lang, ignoreIllegals: true }).value}</code></pre>`
-          } catch (__) {}
-        }
-        return `<pre><code class="hljs">${basicMarkdownInstance.utils.escapeHtml(str)}</code></pre>`
-      },
-    })
-    md.value = basicMarkdownInstance
-  }
-}
-
-/**
- * 渲染 Markdown 內容的計算屬性
- * 這是將原始 Markdown 文本轉換為可顯示 HTML 的核心函數
- * 每當 article.value.content 或 md.value 改變時，此函數會自動重新執行
- */
-const renderedContent = computed(() => {
-  // 安全檢查：確保文章內容和解析器都已載入
-  if (!article.value?.content || !md.value) return ''
-
-  /**
-   * 步驟1: 使用 Markdown-it 解析器將 Markdown 轉換為 HTML
-   * 這個過程會：
-   * - 將 # 標題 轉換為 <h1>標題</h1>
-   * - 將 **粗體** 轉換為 <strong>粗體</strong>
-   * - 將程式碼區塊進行語法高亮
-   * - 應用所有已載入的插件功能
-   */
-  let html = md.value.render(article.value.content)
-
-  /**
-   * 步驟2: 後處理 - 添加 Mermaid 圖表支援
-   * 將程式碼區塊中的 mermaid 圖表語法轉換為可渲染的格式
-   */
-  html = processMermaidDiagrams(html)
-
-  return html
-})
-
-/**
- * 處理 Mermaid 圖表的後處理函數
- * Mermaid 是一個用文字描述圖表的工具，支援流程圖、時序圖等
- *
- * 轉換過程：
- * ```mermaid
- * graph TD
- *   A --> B
- * ```
- * 會變成：
- * <div class="mermaid">graph TD\n  A --> B</div>
- *
- * @param {string} html - 已經過 Markdown 解析的 HTML 內容
- * @returns {string} 處理過 Mermaid 語法的 HTML
- */
-const processMermaidDiagrams = (html) => {
-  // 主要處理邏輯 - 檢查內容是否包含 mermaid 語法
-  const result = html.replace(/<pre><code[^>]*>([\s\S]*?)<\/code><\/pre>/g, (match, content) => {
-    // 解碼 HTML 實體
-    const decodedContent = content
-      .replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>')
-      .replace(/&amp;/g, '&')
-      .replace(/&quot;/g, '"')
-      .replace(/&#x27;/g, "'")
-      .trim()
-
-    // 檢查是否為 mermaid 圖表語法
-    const mermaidKeywords = [
-      'graph',
-      'flowchart',
-      'sequenceDiagram',
-      'classDiagram',
-      'stateDiagram',
-      'gantt',
-      'pie',
-      'journey',
-      'gitgraph',
-      'erDiagram',
-      'mindmap',
-      'timeline',
-    ]
-
-    const isMermaidDiagram = mermaidKeywords.some((keyword) =>
-      decodedContent.toLowerCase().includes(keyword.toLowerCase()),
-    )
-
-    if (isMermaidDiagram) {
-      return `<div class="mermaid">${decodedContent}</div>`
-    }
-
-    // 不是 mermaid 圖表，保持原樣
-    return match
-  })
-
-  return result
-}
+const renderedContent = ref('')
 
 const fetchArticle = async () => {
   try {
@@ -425,6 +239,7 @@ const fetchArticle = async () => {
 
     if (response.data.success) {
       article.value = response.data.blogs
+      renderedContent.value = await markdownUtil.render(article.value.content || '')
     } else {
       error.value = response.data.message || '獲取文章失敗'
     }
@@ -501,7 +316,7 @@ const initializeExtraFeatures = async () => {
       mermaidModule.default.initialize({
         startOnLoad: false,
         theme: 'base',
-        securityLevel: 'loose',
+        securityLevel: 'strict',
         themeVariables: {
           primaryColor: '#e1f5fe',
           primaryTextColor: '#000000',
@@ -547,7 +362,7 @@ const initializeExtraFeatures = async () => {
       })
 
       // 儲存 mermaid 實例供後續使用
-      window.mermaidInstance = mermaidModule.default
+      mermaidInstance = mermaidModule.default
     } else {
       console.warn('Mermaid 載入失敗')
     }
@@ -593,7 +408,7 @@ const initializeExtraFeatures = async () => {
 
 // 重新渲染 Mermaid 圖表
 const renderMermaidCharts = async () => {
-  if (typeof window !== 'undefined' && window.mermaidInstance) {
+  if (mermaidInstance) {
     try {
       // 等待下一個 tick 確保 DOM 已更新
       await nextTick()
@@ -613,7 +428,7 @@ const renderMermaidCharts = async () => {
             const uniqueId = `mermaid-${i}-${Date.now()}`
 
             // 使用新的渲染方式
-            const { svg } = await window.mermaidInstance.render(uniqueId, graphDefinition.trim())
+            const { svg } = await mermaidInstance.render(uniqueId, graphDefinition.trim())
 
             // 設置 SVG 內容
             element.innerHTML = svg
@@ -663,7 +478,10 @@ const renderMermaidCharts = async () => {
             }
           } catch (renderError) {
             console.error('Mermaid render error:', renderError)
-            element.innerHTML = `<div class="mermaid-error">圖表渲染失敗: ${renderError.message}</div>`
+            const errDiv = document.createElement('div')
+            errDiv.className = 'mermaid-error'
+            errDiv.textContent = `圖表渲染失敗: ${renderError.message}`
+            element.replaceChildren(errDiv)
           }
         }
       }
@@ -686,23 +504,15 @@ const renderMathJax = async () => {
 }
 
 onMounted(async () => {
-  // 先初始化 Markdown 解析器
-  await initializeMarkdown()
-
-  // 初始化額外功能
   await initializeExtraFeatures()
-
-  // 獲取文章內容
   await fetchArticle()
-
-  // 渲染特殊內容
   await renderMermaidCharts()
   await renderMathJax()
 })
 
-// 監聽文章內容變化，重新渲染特殊內容
-watch(article, async () => {
-  if (article.value) {
+watch(article, async (newArticle) => {
+  if (newArticle?.content) {
+    renderedContent.value = await markdownUtil.render(newArticle.content)
     await nextTick()
     await renderMermaidCharts()
     await renderMathJax()

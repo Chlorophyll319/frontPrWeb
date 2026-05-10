@@ -1,4 +1,4 @@
-<route lang="yaml">
+﻿<route lang="yaml">
 meta:
   layout: admin
   title: 後台登入
@@ -150,9 +150,21 @@ const handleLogin = async () => {
   try {
     const response = await userService.login(form)
     const { user: loggedInUser } = response.data || { user: {} }
+    const role = loggedInUser?.role || 'user'
+
+    if (role !== 'admin') {
+      toast.add({
+        severity: 'error',
+        summary: '登入失敗',
+        detail: '無後台權限',
+        life: 3000,
+      })
+      return
+    }
+
     user.login({
       username: loggedInUser?.username || form.username,
-      role: loggedInUser?.role || 'admin',
+      role,
       token: loggedInUser?.token || '',
     })
 

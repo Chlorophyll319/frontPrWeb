@@ -1,8 +1,13 @@
-import MarkdownIt from 'markdown-it'
+﻿import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
+import DOMPurify from 'dompurify'
 import 'highlight.js/styles/github.css'
 
-// 先創建基本的 markdown-it 實例
+const DOMPURIFY_CONFIG = {
+  USE_PROFILES: { html: true },
+  FORBID_TAGS: ['style'],
+}
+
 const md = new MarkdownIt({
   html: true,
   linkify: true,
@@ -14,27 +19,36 @@ const md = new MarkdownIt({
       try {
         return `<pre><code class="hljs language-${lang}">${hljs.highlight(str, { language: lang, ignoreIllegals: true }).value}</code></pre>`
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     }
     return `<pre><code class="hljs">${md.utils.escapeHtml(str)}</code></pre>`
   },
 })
 
-// 動態加載插件
+// 自訂 fence renderer：以 ```mermaid 語言標記辨識圖表，取代關鍵字比對
+const defaultFence = md.renderer.rules.fence
+md.renderer.rules.fence = (tokens, idx, options, env, self) => {
+  const token = tokens[idx]
+  if (token.info.trim() === 'mermaid') {
+    return `<div class="mermaid">${md.utils.escapeHtml(token.content.trim())}</div>\n`
+  }
+  return defaultFence
+    ? defaultFence(tokens, idx, options, env, self)
+    : self.renderToken(tokens, idx, options)
+}
+
 let pluginsLoaded = false
 
 async function loadPlugins() {
   if (pluginsLoaded) return
 
   try {
-    // 嘗試加載插件
     const emojiPlugin = await import('markdown-it-emoji')
     const footnotePlugin = await import('markdown-it-footnote')
     const taskListsPlugin = await import('markdown-it-task-lists')
     const tocPlugin = await import('markdown-it-toc-done-right')
 
-    // 使用插件
     md.use(emojiPlugin.default || emojiPlugin)
     md.use(footnotePlugin.default || footnotePlugin)
     md.use(taskListsPlugin.default || taskListsPlugin, { enabled: true })
@@ -56,6 +70,7 @@ export default {
     if (!markdown) return ''
 
     await loadPlugins()
-    return md.render(markdown)
+    const html = md.render(markdown)
+    return DOMPurify.sanitize(html, DOMPURIFY_CONFIG)
   },
 }
