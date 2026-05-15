@@ -1,0 +1,1 @@
+import{A as o}from"./index-FUk7HDyd.js";const{api:r,apiAuth:t}=o,c={get(){return r.get("/projects")},getId(e){return r.get(`/projects/${e}`)},getAll(){return t.get("/projects/all")},create(e){return t.post("/projects",e)},update(e,p){return t.patch(`/projects/${e}`,p)},remove(e){return t.delete(`/projects/${e}`)}};export{c as p};

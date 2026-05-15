@@ -1,1 +1,0 @@
-import{A as s}from"./index-CiTq75Ny.js";const{api:o,apiAuth:r}=s,l={get({tag:t,page:e,limit:g}={}){return o.get("/blogs",{params:{tag:t,page:e,limit:g}})},getId(t){return o.get(`/blogs/${t}`)},getAll(){return r.get("/blogs/all")},create(t){return r.post("/blogs",t)},update(t,e){return r.patch(`/blogs/${t}`,e)}};export{l as b};
