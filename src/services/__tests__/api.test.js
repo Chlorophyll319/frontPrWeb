@@ -94,6 +94,24 @@ describe('apiAuth interceptors', () => {
       expect(mock.history.patch).toHaveLength(0)
     })
 
+    it('多個請求同時 token 過期，只觸發一次 refresh，所有請求都用新 token 重試', async () => {
+      const user = useUserStore()
+      user.login({ username: 'admin', role: 'admin', token: 'old-token' })
+
+      mock.onGet('/data1').replyOnce(400, { message: 'token 已過期' })
+      mock.onGet('/data2').replyOnce(400, { message: 'token 已過期' })
+      mock.onPatch('/user/refresh').replyOnce(200, { token: 'new-token' })
+      mock.onGet('/data1').replyOnce(200, { from: 'data1' })
+      mock.onGet('/data2').replyOnce(200, { from: 'data2' })
+
+      const [res1, res2] = await Promise.all([apiAuth.get('/data1'), apiAuth.get('/data2')])
+
+      expect(mock.history.patch).toHaveLength(1)
+      expect(res1.data).toEqual({ from: 'data1' })
+      expect(res2.data).toEqual({ from: 'data2' })
+      expect(user.token).toBe('new-token')
+    })
+
     it('/user/refresh 本身的 400 不觸發遞迴 refresh', async () => {
       const user = useUserStore()
       user.login({ username: 'admin', role: 'admin', token: 'old-token' })
