@@ -69,7 +69,7 @@ describe('apiAuth interceptors', () => {
       expect(retryRequest.headers.Authorization).toBe('Bearer new-token')
     })
 
-    it('refresh 失敗時呼叫 logout，並拋出原始錯誤', async () => {
+    it('refresh 失敗時呼叫 logout，並拋出 refresh 錯誤', async () => {
       const user = useUserStore()
       user.login({ username: 'admin', role: 'admin', token: 'old-token' })
 
@@ -77,7 +77,7 @@ describe('apiAuth interceptors', () => {
       mock.onPatch('/user/refresh').replyOnce(401, { message: 'unauthorized' })
 
       await expect(apiAuth.get('/data')).rejects.toMatchObject({
-        response: { status: 400 },
+        response: { status: 401 },
       })
 
       expect(user.isLoggedIn).toBe(false)

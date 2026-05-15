@@ -18,6 +18,14 @@ apiAuth.interceptors.request.use((config) => {
   return config
 })
 
+let isRefreshing = false
+let refreshQueue = []
+
+const processQueue = (error, token = null) => {
+  refreshQueue.forEach((p) => (error ? p.reject(error) : p.resolve(token)))
+  refreshQueue = []
+}
+
 // token 相關 成功處理與失敗處理
 apiAuth.interceptors.response.use(
   (res) => res,
@@ -29,17 +37,29 @@ apiAuth.interceptors.response.use(
       error.config.url !== '/user/refresh'
     ) {
       const user = useUserStore()
+
+      if (isRefreshing) {
+        return new Promise((resolve, reject) => {
+          refreshQueue.push({ resolve, reject })
+        }).then((token) => {
+          error.config.headers.Authorization = `Bearer ${token}`
+          return apiAuth.request(error.config)
+        })
+      }
+
+      isRefreshing = true
       try {
-        // 直接使用 apiAuth instance 發送請求，避免循環相依
         const { data } = await apiAuth.patch('/user/refresh')
-
         user.token = data.token
-
+        processQueue(null, data.token)
         error.config.headers.Authorization = `Bearer ${data.token}`
-
         return apiAuth.request(error.config)
-      } catch {
+      } catch (refreshError) {
+        processQueue(refreshError, null)
         user.logout()
+        throw refreshError
+      } finally {
+        isRefreshing = false
       }
     }
     throw error
